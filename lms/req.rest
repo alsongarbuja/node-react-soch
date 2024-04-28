@@ -6,7 +6,8 @@ POST http://localhost:5000/api/books
 Content-Type: application/json
 
 {
-  "name": "Hello",
+  "title": "Book title 2",
   "author": "F. Scott Fitzgerald",
-  "price": 150
+  "year": 2005,
+  "edition": 3
 }

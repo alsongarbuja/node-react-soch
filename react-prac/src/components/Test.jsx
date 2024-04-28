@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom"
 
 const Test = () => {
-  const params = useParams();
+  const { id } = useParams();
 
   return (
-    <div>This is dynamic route - {params.id}</div>
+    <div>This is dynamic route - {id}</div>
   )
 }
 
