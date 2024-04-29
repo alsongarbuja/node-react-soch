@@ -16,7 +16,7 @@ const BookSchema = new mongoose.Schema({
   edition: {
     type: Number,
     default: 1,
-  }
+  },
 }, { timestamps: true });
 
 const BookModel = mongoose.model('Book', BookSchema);

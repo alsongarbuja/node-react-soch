@@ -11,3 +11,16 @@ Content-Type: application/json
   "year": 2005,
   "edition": 3
 }
+
+###
+
+GET http://localhost:5000/api/books/662dc25c18b2b9a9e0ec89b1
+
+###
+
+PATCH http://localhost:5000/api/books/662dc25c18b2b9a9e0ec89b1
+Content-Type: application/json
+
+{
+  "title": "New book"
+}
