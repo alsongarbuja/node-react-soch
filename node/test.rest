@@ -1,0 +1,24 @@
+POST http://localhost:5000/api/schools
+Content-Type: application/json
+
+{
+  "name": "School 4",
+  "address": "address 4"
+}
+
+###
+GET http://localhost:5000/api/schools
+
+###
+GET http://localhost:5000/api/schools/6632fd853660135a6123d917
+
+###
+PATCH http://localhost:5000/api/schools/6632fd853660135a6123d917
+Content-Type: application/json
+
+{
+  "name": "update school"
+}
+
+###
+DELETE http://localhost:5000/api/schools/6632fd853660135a6123d917
