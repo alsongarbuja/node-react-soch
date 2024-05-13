@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 
@@ -14,9 +15,8 @@ app.use('/api', routes);
 // localhost:5000/api/boworrs
 
 app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-    message: "Something went wrong"
+  res.status(err.status||httpStatus.BAD_REQUEST).json({
+    message: err.message
   })
 })
 

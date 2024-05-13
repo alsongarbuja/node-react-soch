@@ -24,3 +24,22 @@ Content-Type: application/json
 {
   "title": "New book"
 }
+
+###
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "alson",
+  "email": "alson2@gmail.com",
+  "password": "Alsonalson1"
+}
+
+###
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "alson2@gmail.com",
+  "password": "Alsonalson1"
+}
