@@ -1,14 +1,28 @@
 const passport = require("passport");
+const { allRoles } = require("../config/roles");
 
-const auth = async (req, res, next) => {
+const verifyAuth = (req, requiredPermissions, resolve, reject) => async (err, user, info) => {
+  if (err || info || !user) {
+    return reject(new Error('Unauthorized'));
+  }
+  req.user = user;
+  if (requiredPermissions.length > 0) {
+    const userPermissions = allRoles[user.role];
+    const hasPermission = requiredPermissions.every((permission) => userPermissions.includes(permission));
+    if (!hasPermission) {
+      return reject(new Error('Forbidden'));
+    }
+  }
+  resolve();
+}
+
+const auth = (...requiredPermissions) => async (req, res, next) => {
   return new Promise((resolve, reject) => {
-    passport.authenticate('jwt', { session: false }, async (err, user, info) => {
-      if (err || info || !user) {
-        return reject(new Error('Unauthorized'));
-      }
-      req.user = user;
-      resolve();
-    })(req, res, next);
+    passport.authenticate(
+      'jwt', 
+      { session: false }, 
+      verifyAuth(req, requiredPermissions, resolve, reject)
+    )(req, res, next);
   })
     .then(() => next())
     .catch((err) => next(err));

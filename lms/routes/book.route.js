@@ -7,11 +7,8 @@ const auth = require('../middlewares/auth.middleware');
 const router = express.Router();
 
 router.route('/') // /api/books/
-  .get(auth, booksController.getBooks)
-  .post(validate(createBook), (req, res, next) => {
-    console.log('this is second middleware');
-    next();
-  }, booksController.createBook);
+  .get(auth('getBook'), booksController.getBooks)
+  .post(auth('mutateBook'), async (req, res, next) => {}, validate(createBook), booksController.createBook);
 
 router.route('/:bookId') // /api/books/:bookId
   .get(booksController.getSingleBook)

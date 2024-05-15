@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { roles } = require('../config/roles');
 
 const userSchema = mongoose.Schema({
   username: {
@@ -17,7 +18,7 @@ const userSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'librarian', 'admin'],
+    enum: roles,
     default: 'user',
   }
 }, { timestamps: true });
