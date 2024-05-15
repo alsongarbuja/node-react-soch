@@ -1,11 +1,15 @@
 require('dotenv').config();
 const express = require('express');
+const passport = require('passport');
 const app = express();
 
 const routes = require('./routes');
 const httpStatus = require('http-status');
+const { jwtStrategy } = require('./config/passport');
 
 app.use(express.json());
+app.use(passport.initialize());
+passport.use('jwt', jwtStrategy);
 
 app.use('/api', routes);
 
